@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class PatientDetailsComponent implements OnInit {
   public errorMessage = '';
   public age = 0;
 
-  constructor(private repository: RepositoryService, private router: Router,
+  constructor(private repository: RepositoryService, private router: Router, private location: Location,
               private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
@@ -42,5 +43,23 @@ export class PatientDetailsComponent implements OnInit {
     return moment().diff(dateOfBirth, 'years');
   }
 
+
+  cancelAppointment  = (id) => {
+    const deleteUrl = `api/appointment/${id}`;
+    this.repository.delete(deleteUrl)
+      .subscribe(res => {
+        $('#successModal').modal();
+      },
+      (error) => {
+        this.errorHandler.handleError(error);
+        this.errorMessage = this.errorHandler.errorMessage;
+      });
+  }
+
+  public redirect() {
+    window.location.reload();
+    // this.location.forward();
+    // this.router.navigateByUrl(`/patient/details/${id}`);
+  }
 
 }

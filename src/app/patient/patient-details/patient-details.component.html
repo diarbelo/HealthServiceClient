@@ -83,10 +83,15 @@
             <td>{{appointment?.appointmentType}}</td>
             <td>{{appointment?.date | date: 'dd/MM/yyyy'}}</td>
             <td>{{appointment?.date | date: 'mediumTime'}}</td>
-            <td><button *ngIf='appointment?.active' type="button" id="delete" class="btn btn-danger">Cancel Appointment</button></td>
+            <td><button *ngIf='appointment?.active' type="button" id="delete" class="btn btn-danger" (click)="cancelAppointment(appointment.id)">Cancel Appointment</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <app-success-modal [modalHeaderText]="'Success message'" [modalBodyText]="'Action completed successfully'"
+  [okButtonText]="'OK'" (redirectOnOK)="redirect()"></app-success-modal>
+
+<app-error-modal [modalHeaderText]="'Error message'" [modalBodyText]="errorMessage" [okButtonText]="'OK'">
+</app-error-modal>
 </div>
