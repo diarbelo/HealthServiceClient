@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +30,7 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
     { path: '**', redirectTo: '/404', pathMatch: 'full' }
     ])
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
