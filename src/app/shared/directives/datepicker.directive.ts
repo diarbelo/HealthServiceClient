@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Output, EventEmitter, OnInit } from '@angular/core';
+import { Directive, ElementRef, Output, EventEmitter, OnInit, Input } from '@angular/core';
 
 @Directive({
   selector: '[appDatepicker]'
@@ -6,6 +6,7 @@ import { Directive, ElementRef, Output, EventEmitter, OnInit } from '@angular/co
 export class DatepickerDirective implements OnInit {
   // tslint:disable-next-line: no-output-native
   @Output() public change = new EventEmitter();
+  @Input() public years: string;
 
   constructor(private elementRef: ElementRef) { }
 
@@ -13,7 +14,7 @@ export class DatepickerDirective implements OnInit {
     $(this.elementRef.nativeElement).datepicker({
       dateFormat: 'dd/MM/yy',
       changeYear: true,
-      yearRange: '-100:+0',
+      yearRange: this.years,
       onSelect: (dateText) => {
         this.change.emit(dateText);
       }

@@ -39,7 +39,7 @@
       <div class="form-group row">
         <label for="dateOfBirth" class="control-label col-md-2">Date of birth: </label>
         <div class="col-md-5">
-          <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker
+          <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" appDatepicker [years]="'-100:+0'"
             (change)="executeDatePicker($event)" readonly />
         </div>
         <div class="col-md-5">

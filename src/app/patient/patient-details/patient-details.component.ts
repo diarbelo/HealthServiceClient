@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Patient } from './../../_interfaces/patient.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../../shared/services/repository.service';
@@ -58,8 +58,11 @@ export class PatientDetailsComponent implements OnInit {
 
   public redirect() {
     window.location.reload();
-    // this.location.forward();
-    // this.router.navigateByUrl(`/patient/details/${id}`);
+  }
+
+  public redirecToAddAppointment = (id) => {
+    const addUrl = `patient/add-appointment/${id}`;
+    this.router.navigate([addUrl]);
   }
 
 }
