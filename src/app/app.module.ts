@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
+import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
     HomeComponent,
     MenuComponent,
     NotFoundComponent,
-    InternalServerComponent
+    InternalServerComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
     { path: 'patient', loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule ) },
     { path: '404', component: NotFoundComponent },
     { path: '500', component: InternalServerComponent },
+    { path: '401', component: UnauthorizedComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/404', pathMatch: 'full' }
     ])
